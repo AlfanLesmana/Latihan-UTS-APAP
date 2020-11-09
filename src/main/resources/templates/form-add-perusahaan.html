@@ -1,0 +1,29 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Tambah Perusahaan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <h1 style="margin: 2rem 2rem" class="text-center">Form Tambah Perusahaan</h1>
+    <form th:action="@{/perusahaan/tambah}" th:object="${perusahaan}" method="POST">
+        <input type="hidden" th:field="*{idPerusahaan}" required>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{namaPerusahaan}">Nama Perusahaan</label>
+            <input type="text" class="form-control" th:field="*{namaPerusahaan}" required>
+        </div>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{noTeleponPerusahaan}">No Telepon Perusahaan</label>
+            <input type="number" class="form-control" th:field="*{noTeleponPerusahaan}" required>
+        </div>
+        <div class="align-items-center justify-content-center" style="display: flex">
+            <a class="btn btn-md btn-secondary mr-4" th:href="@{/perusahaan/}" style="margin-top: 1rem; color: white">Batal</a>
+            <button class="btn btn-md btn-primary" style="margin-top: 1rem" type="submit">Simpan</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

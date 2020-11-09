@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Perusahaan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <h1 style="margin-top: 2rem" class="text-center">Daftar Perusahaan</h1>
+    <table class="table table-hover" style="margin-top: 1rem">
+        <a class="btn btn-primary btn-md" th:href="@{/perusahaan/tambah/}"> + Tambah Perusahaan</a>
+        <thead style="background: #503E9D; color:white; font-weight: bold">
+        <tr>
+            <th>No</th>
+            <th>Nama Perusahaan</th>
+            <th>No Telepon</th>
+            <th>Aksi</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="perusahaan, iterationStatus : ${listPerusahaan}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${perusahaan.namaPerusahaan}"></td>
+            <td th:text="${perusahaan.noTeleponPerusahaan}"></td>
+            <td><a class="btn btn-primary btn-sm" th:href="@{/perusahaan/view/(idPerusahaan=${perusahaan.idPerusahaan})}">Lihat</a></td>
+            <td><a class="btn btn-outline-primary btn-sm" th:href="@{/perusahaan/ubah/(idPerusahaan=${perusahaan.idPerusahaan})}">Ubah</a></td>
+            <form th:action="@{/perusahaan/hapus/}+${perusahaan.idPerusahaan}" method="POST">
+                <td><button class="btn btn-danger btn-sm" type="submit">Hapus</button></td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
