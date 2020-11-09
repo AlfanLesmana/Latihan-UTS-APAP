@@ -1,0 +1,46 @@
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Tambah Film</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <h1 style="margin: 2rem 2rem" class="text-center">Form Tambah Film</h1>
+    <form th:action="@{/film/tambah}" th:object="${film}" method="POST">
+        <input type="hidden" th:field="*{idFilm}" required>
+        <input type="hidden" th:field="*{perusahaan}" required>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{namaFilm}">Nama Film</label>
+            <input type="text" class="form-control" th:field="*{namaFilm}" required>
+        </div>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{durasiFilm}">Durasi Film</label>
+            <input type="number" class="form-control" th:field="*{durasiFilm}" required>
+        </div>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{genreFilm}">Genre</label>
+            <select class="form-control" th:field="*{genreFilm}" required>
+                <option value="Horror">Horror</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Action">Action</option>
+            </select>
+        </div>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{tanggalDibuat}">Tanggal Dibuatr</label>
+            <input type="date" class="form-control" th:field="*{tanggalDibuat}" required>
+        </div>
+        <div class="form-group row offset-2 col-8">
+            <label th:for="*{namaProduser}">Nama Produser</label>
+            <input type="text" class="form-control" th:field="*{namaProduser}" required>
+        </div>
+        <div class="align-items-center justify-content-center" style="display: flex">
+            <a class="btn btn-md btn-secondary mr-4" th:href="@{/perusahaan/}" style="margin-top: 1rem; color: white">Batal</a>
+            <button class="btn btn-md btn-primary" style="margin-top: 1rem" type="submit">Simpan</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

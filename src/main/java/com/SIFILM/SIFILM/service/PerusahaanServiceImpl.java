@@ -48,4 +48,19 @@ public class PerusahaanServiceImpl implements PerusahaanService {
             return null;
         }
     }
+
+    @Override
+    public void addPendapatan(PerusahaanModel perusahaan, String genre) {
+        Long pendapatan = perusahaan.getPendapatan();
+        if(genre.equals("Comedy")){
+            pendapatan = pendapatan + 150000000;
+        }
+        else if(genre.equals("Action")){
+            pendapatan = pendapatan + 300000000;
+        }
+        else if(genre.equals("Horror")){
+            pendapatan = pendapatan + 100000000;
+        }
+        perusahaan.setPendapatan(pendapatan);
+    }
 }

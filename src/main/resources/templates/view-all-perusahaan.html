@@ -16,6 +16,7 @@
             <th>No</th>
             <th>Nama Perusahaan</th>
             <th>No Telepon</th>
+            <th>Pendapatan</th>
             <th>Aksi</th>
             <th></th>
             <th></th>
@@ -26,6 +27,7 @@
             <td th:text="${iterationStatus.count}"></td>
             <td th:text="${perusahaan.namaPerusahaan}"></td>
             <td th:text="${perusahaan.noTeleponPerusahaan}"></td>
+            <td th:text="'Rp ' + ${perusahaan.pendapatan}"></td>
             <td><a class="btn btn-primary btn-sm" th:href="@{/perusahaan/view/(idPerusahaan=${perusahaan.idPerusahaan})}">Lihat</a></td>
             <td><a class="btn btn-outline-primary btn-sm" th:href="@{/perusahaan/ubah/(idPerusahaan=${perusahaan.idPerusahaan})}">Ubah</a></td>
             <form th:action="@{/perusahaan/hapus/}+${perusahaan.idPerusahaan}" method="POST">

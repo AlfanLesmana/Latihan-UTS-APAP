@@ -20,6 +20,34 @@
                 <th>Nomor Telepon Perusahaan</th>
                 <td th:text="${perusahaan.noTeleponPerusahaan}"></td>
             </tr>
+            <tr>
+                <th>Pendapatan Perusahaan</th>
+                <td th:text="'Rp '+${perusahaan.pendapatan}"></td>
+            </tr>
+            </tbody>
+            <a th:href="@{/film/tambah/}+${perusahaan.idPerusahaan}" class="btn btn-primary btn-md float-left mb-3" style="color: white">Tambah Film</a>
+        </table>
+
+        <table class="table table-hover mt-4" style="margin-top: 1rem">
+            <thead style="background: #503E9D; color:white; font-weight: bold">
+            <tr>
+                <th>No</th>
+                <th>Nama Film</th>
+                <th>Durasi</th>
+                <th>Genre Film</th>
+                <th>Tanggal Dibuat</th>
+                <th>Nama Produser</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="film, iterationStatus : ${listFilm}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${film.namaFilm}"></td>
+                <td th:text="${film.durasiFilm}"></td>
+                <td th:text="${film.genreFilm}"></td>
+                <td th:text="${film.tanggalDibuat}"></td>
+                <td th:text="${film.namaProduser}"></td>
+            </tr>
             </tbody>
         </table>
     </div>

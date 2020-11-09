@@ -10,4 +10,5 @@ public interface PerusahaanService {
     void deletePerusahaan(PerusahaanModel perusahaan);
     void addPerusahaan(PerusahaanModel perusahaan);
     PerusahaanModel updatePerusahaan(Long idPerusahaan,String namaPerusahaan, String nomorTelepon);
+    void addPendapatan(PerusahaanModel perusahaan, String genre);
 }

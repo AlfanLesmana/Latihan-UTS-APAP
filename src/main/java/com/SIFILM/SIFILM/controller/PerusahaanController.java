@@ -1,18 +1,24 @@
 package com.SIFILM.SIFILM.controller;
 
+import com.SIFILM.SIFILM.model.FilmModel;
 import com.SIFILM.SIFILM.model.PerusahaanModel;
+import com.SIFILM.SIFILM.service.FilmService;
 import com.SIFILM.SIFILM.service.PerusahaanService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class PerusahaanController {
 
     @Autowired
     PerusahaanService perusahaanService;
+
+    @Autowired
+    FilmService filmService;
 
     @GetMapping("/perusahaan/")
     public String viewAllPerusahaan(Model model){
@@ -43,6 +49,8 @@ public class PerusahaanController {
     @GetMapping(value = "/perusahaan/view/")
     private String ViewPerusahaan(@RequestParam(value= "idPerusahaan") Long idPerusahaan,Model model){
         PerusahaanModel targetPerusahaan = perusahaanService.getPerusahaanById(idPerusahaan).get();
+        List<FilmModel> listFilm = filmService.getAllFilmByPerusahaan(targetPerusahaan);
+        model.addAttribute("listFilm",listFilm);
         model.addAttribute("perusahaan",targetPerusahaan);
         return "view-perusahaan";
     }
@@ -59,8 +67,11 @@ public class PerusahaanController {
     }
 
     @PostMapping(value = "perusahaan/hapus/{idPerusahaan}")
-    private String deletePenerbanganSubmit(@PathVariable(value = "idPerusahaan") Long idPerusahaan , Model model){
+    private String deletePerusahaanSubmit(@PathVariable(value = "idPerusahaan") Long idPerusahaan , Model model){
         PerusahaanModel perusahaanDelete = perusahaanService.getPerusahaanById(idPerusahaan).get();
+        if(perusahaanDelete.getListFilm().size()>0){
+            return "error-delete-perusahaan";
+        }
         perusahaanService.deletePerusahaan(perusahaanDelete);
         model.addAttribute("perusahaan",perusahaanDelete);
         return "delete-perusahaan";

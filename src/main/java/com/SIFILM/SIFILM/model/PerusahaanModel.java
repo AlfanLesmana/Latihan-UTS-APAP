@@ -1,5 +1,7 @@
 package com.SIFILM.SIFILM.model;
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,6 +25,10 @@ public class PerusahaanModel implements Serializable {
     @Size(max = 30)
     @Column(name = "no_telepon_perusahaan",nullable = false)
     private String noTeleponPerusahaan;
+
+    @NotNull
+    @Column(name = "pendapatan",nullable = false, columnDefinition = "integer default 0")
+    private Long pendapatan;
 
     @OneToMany(mappedBy = "perusahaan",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<FilmModel> listFilm;
@@ -57,5 +63,13 @@ public class PerusahaanModel implements Serializable {
 
     public void setListFilm(List<FilmModel> listFilm) {
         this.listFilm = listFilm;
+    }
+
+    public Long getPendapatan() {
+        return pendapatan;
+    }
+
+    public void setPendapatan(Long pendapatan) {
+        this.pendapatan = pendapatan;
     }
 }
